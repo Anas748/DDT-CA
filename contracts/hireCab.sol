@@ -116,10 +116,27 @@ contract TaxiRentalSystem {
         emit FareOffered(_fare);
     }
 
-
     // Accept the offered fare from passenger 
     function acceptFare() public onlyPassenger notYetAccepted {
         require(fareOffered, "Fare has not been offered");
         fareAccepted = true;
         emit FareAccepted();
     }
+         // Confirm destination arrival
+    function confirmDestinationArrival() public onlyDriver notYetArrived {
+        destinationArrived = true;
+        emit DestinationArrived();
+    }
+
+
+    // Pay the fare to the driver
+    function payFare() public payable onlyPassenger notYetPaid {
+    require(fareAccepted, "Fare has not been accepted");
+    require(destinationArrived, "Destination has not yet arrived");
+    require(msg.value >= fare, "Insufficient Ether sent to pay the fare");
+
+
+    payable(driver).transfer(msg.value);
+    farePaid = true;
+    emit FarePaid();
+}
