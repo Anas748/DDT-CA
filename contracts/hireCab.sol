@@ -33,5 +33,20 @@ contract TaxiRentalSystem {
     event PassengerRated(uint8 rating);
 
 
+    // Constructor initializes the default values for state variables
+    constructor() {
+        passenger = msg.sender;
+        driver = address(0); // Initially, no driver is assigned
+        pickupLocation = "";
+        dropoffLocation = "";
+        distanceKM = 0;
+        fare = 0;
+        fareOffered = false;
+        fareAccepted = false;
+        destinationArrived = false;
+        farePaid = false;
+        passengerRating = 0;
+    }
+
 
 
