@@ -90,4 +90,13 @@ contract TaxiRentalSystem {
         require(passengerRating == 0, "You have already rated the driver");
         _;
     }
+        // Function: Register a passenger profile
+    function registerPassengerProfile(string memory _name) public {
+        passengerProfiles[msg.sender].name = _name;
+    }
 
+    // Function: Register a driver profile
+    function registerDriverProfile(string memory _name) public {
+        driverProfiles[msg.sender].name = _name;
+    }
+    
