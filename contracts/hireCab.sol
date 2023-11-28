@@ -99,4 +99,7 @@ contract TaxiRentalSystem {
     function registerDriverProfile(string memory _name) public {
         driverProfiles[msg.sender].name = _name;
     }
-    
+      // Function: Assign a driver to the passenger
+    function assignDriver(address _driver) public onlyPassenger notYetOffered {
+        driver = _driver;
+    }
