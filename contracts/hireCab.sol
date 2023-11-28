@@ -103,3 +103,8 @@ contract TaxiRentalSystem {
     function assignDriver(address _driver) public onlyPassenger notYetOffered {
         driver = _driver;
     }
+       // Specify pickup and drop-off locations
+    function specifyPickupAndDropoff(string memory _pickupLocation, string memory _dropoffLocation) public onlyPassenger notYetOffered {
+        pickupLocation = _pickupLocation;
+        dropoffLocation = _dropoffLocation;
+    }
