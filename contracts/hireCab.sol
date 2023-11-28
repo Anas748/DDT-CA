@@ -146,3 +146,16 @@ contract TaxiRentalSystem {
         emit PassengerRated(_rating);
     }
 
+     // Get passenger profile
+    function getPassengerProfile() public view returns (string memory name, uint8 rating) {
+        UserProfile storage profile = passengerProfiles[msg.sender];
+        return (profile.name, profile.rating);
+    }
+
+
+    // Get driver profile
+    function getDriverProfile() public view returns (string memory name, uint8 rating) {
+        UserProfile storage profile = driverProfiles[msg.sender];
+        return (profile.name, profile.rating);
+    }
+}
