@@ -140,11 +140,18 @@ contract TaxiRentalSystem {
     }
 
     // Rate the driver
-    function rateDriver(uint8 _rating) public onlyPassenger canRate {
-        require(_rating >= 1 && _rating <= 5, "Rating must be between 1 and 5");
-        passengerRating = _rating;
-        emit PassengerRated(_rating);
-    }
+  
+function rateDriver(uint8 _rating) public onlyPassenger canRate {
+    require(_rating >= 1 && _rating <= 5, "Rating must be between 1 and 5");
+
+    // Update passengerRating in the contract state
+    passengerRating = _rating;
+    emit PassengerRated(_rating);
+
+    // Update driver's rating in the user profile
+    driverProfiles[driver].rating = _rating;
+}
+
 
      // Get passenger profile
     function getPassengerProfile() public view returns (string memory name, uint8 rating) {
