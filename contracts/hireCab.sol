@@ -134,9 +134,15 @@ contract TaxiRentalSystem {
     require(fareAccepted, "Fare has not been accepted");
     require(destinationArrived, "Destination has not yet arrived");
     require(msg.value >= fare, "Insufficient Ether sent to pay the fare");
-
-
     payable(driver).transfer(msg.value);
     farePaid = true;
     emit FarePaid();
-}
+    }
+
+    // Rate the driver
+    function rateDriver(uint8 _rating) public onlyPassenger canRate {
+        require(_rating >= 1 && _rating <= 5, "Rating must be between 1 and 5");
+        passengerRating = _rating;
+        emit PassengerRated(_rating);
+    }
+
