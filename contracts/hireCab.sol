@@ -103,8 +103,23 @@ contract TaxiRentalSystem {
     function assignDriver(address _driver) public onlyPassenger notYetOffered {
         driver = _driver;
     }
-       // Specify pickup and drop-off locations
+       // Specify pickup and drop-off locations 
     function specifyPickupAndDropoff(string memory _pickupLocation, string memory _dropoffLocation) public onlyPassenger notYetOffered {
         pickupLocation = _pickupLocation;
         dropoffLocation = _dropoffLocation;
+    }
+     // Offer fare from driver to passenger 
+    function offerFare(uint256 _distanceKM, uint256 _fare) public onlyDriver notYetOffered {
+        distanceKM = _distanceKM;
+        fare = _fare;
+        fareOffered = true;
+        emit FareOffered(_fare);
+    }
+
+
+    // Accept the offered fare from passenger 
+    function acceptFare() public onlyPassenger notYetAccepted {
+        require(fareOffered, "Fare has not been offered");
+        fareAccepted = true;
+        emit FareAccepted();
     }
