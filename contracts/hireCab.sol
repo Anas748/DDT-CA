@@ -7,11 +7,11 @@ contract TaxiRentalSystem {
         uint8 rating;
     }
 
-
+     // Maps Ethereum addresses to user profiles
     mapping(address => UserProfile) public passengerProfiles;
     mapping(address => UserProfile) public driverProfiles;
 
-
+    // State variables to track the current state of the taxi ride
     address public passenger;
     address public driver;
     string public pickupLocation;
@@ -25,13 +25,12 @@ contract TaxiRentalSystem {
     uint8 public passengerRating;
    
 
-
+    // Events to signal important steps in the ride process
     event FareOffered(uint256 fare);
     event FareAccepted();
     event DestinationArrived();
     event FarePaid();
     event PassengerRated(uint8 rating);
-    
 
 
 
