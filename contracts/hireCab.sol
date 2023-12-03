@@ -100,7 +100,7 @@ contract TaxiRentalSystem {
         driverProfiles[msg.sender].name = _name;
     }
       // Function: Assign a driver to the passenger
-    function assignDriver(address _driver) public onlyPassenger notYetOffered {
+    function Driver(address _driver) public notYetOffered {
         driver = _driver;
     }
        // Specify pickup and drop-off locations 
